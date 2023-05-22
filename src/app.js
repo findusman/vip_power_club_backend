@@ -30,37 +30,7 @@ class App {
             res.sendFile("/index.html");
 
         });
-
-
-        //this.initializeControllers()
-        //this.initializeMiddlewares()
-
     }
-
-
-    
-    initializeControllers() {
-
-        var controllersList = controllers()
-
-        controllers().map(controller => {
-
-            this.app.use("/", controller.router);
-
-        });
-
-    }
-
-    initializeMiddlewares() {
-
-         this.app.use(errorMiddleware())
-
-    }
-
-
-
-   
-
 }
 
 
