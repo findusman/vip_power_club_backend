@@ -1,18 +1,18 @@
-import authController from "./auth.controller.js";
-import commentController from "./comment.controller.js";
-import photoController from "./photo.controller.js";
-import voteController from "./vote.controller.js";
+// import authController from "./auth.controller.js";
+// import commentController from "./comment.controller.js";
+// import photoController from "./photo.controller.js";
+// import voteController from "./vote.controller.js";
 
-export const controllers = function name() {
+// export const controllers = function name() {
 
-    return [
+//     return [
 
-        new authController(),
-        new photoController(),
-        new voteController(),
-        new commentController()
+//         new authController(),
+//         new photoController(),
+//         new voteController(),
+//         new commentController()
 
-    ]
+//     ]
 
     
-}
+// }

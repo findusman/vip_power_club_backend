@@ -1,44 +1,44 @@
-import baseController from "./base.controller"
-import { validationMiddleware, authMiddleware } from '../middleware';
-import { PerformVoteDto } from "../dtos";
-import userNotAuthorizaedException from "../exceptions/userNotAuthorizaed.exception";
+// import baseController from "./base.controller"
+// import { validationMiddleware, authMiddleware } from '../middleware';
+// import { PerformVoteDto } from "../dtos";
+// import userNotAuthorizaedException from "../exceptions/userNotAuthorizaed.exception";
 
 
-class voteController extends baseController {
+// class voteController extends baseController {
 
-    constructor() {
+//     constructor() {
 
-        super('/vote')
-        this.initializeRouter()
-    }
+//         super('/vote')
+//         this.initializeRouter()
+//     }
 
-    initializeRouter() {
+//     initializeRouter() {
 
-        this.router.post(`${this.parentRouterPath}/perform`, validationMiddleware(PerformVoteDto), authMiddleware(), this.performVote)
+//         this.router.post(`${this.parentRouterPath}/perform`, validationMiddleware(PerformVoteDto), authMiddleware(), this.performVote)
       
 
-    }
+//     }
 
-    performVote = async (req, res, next) => {
+//     performVote = async (req, res, next) => {
 
-        try {
+//         try {
 
-            if (req.userData)
-                new userNotAuthorizaedException()
+//             if (req.userData)
+//                 new userNotAuthorizaedException()
 
-            const response = await this._voteService.performVote(req)
-            res.send(this._responseTemplate('Success', response, undefined))
+//             const response = await this._voteService.performVote(req)
+//             res.send(this._responseTemplate('Success', response, undefined))
 
-        } catch (error) {
+//         } catch (error) {
 
-            // let obj = new databaseException()
-            // next(new NotFoundException('There is a problem'))
-            next(error)
-        }
+//             // let obj = new databaseException()
+//             // next(new NotFoundException('There is a problem'))
+//             next(error)
+//         }
 
-    }
+//     }
 
 
-}
+// }
 
-export default voteController
+// export default voteController

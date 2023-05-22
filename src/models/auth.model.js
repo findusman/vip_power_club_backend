@@ -14,116 +14,59 @@ const UserModel = sequelize.define('User', {
         allowNull:false
 
     },
-    name: {
+    firstName: {
         type: DataTypes.STRING,
         allowNull: false
-        
 
+    },
+    lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique:true
 
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique:true
-        
-        
-
+    
     },
-    user_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+    phoneNumber: {
+        type: DataTypes.INTEGER,
         
+    
     },
     password: {
         type: DataTypes.STRING
-        
-
+    
     },
-    photo_url: {
+    confirmPassword: {
+        type: DataTypes.STRING,
+    
+    },
+    isEmailConfirmed: {
+        type: DataTypes.BOOLEAN,
+        
+    },
+    profilePicUrl: {
         type: DataTypes.STRING,
         defaultValue: 'https://vippowerbucket.s3.eu-north-1.amazonaws.com/default-user-pic.png'
-        
 
     },
-    user_type: {
+    userType: {
         type: DataTypes.STRING,
         allowNull: false,
 
     },
-    photograper_type: {
-        type: DataTypes.STRING,
-        allowNull: false,
-
-    },
-    photo_desire_ratio: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-
-    },
-    genres_list: {
-        type: DataTypes.STRING,
-        allowNull: false,
-
-    },
-    camera_brand: {
-        type: DataTypes.STRING,
-        allowNull: false,
-
-    },
-    is_email_verified: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-
-    },
-    is_provided_detailed_info: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue:false
-
-    },
-    is_registered: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        
-        defaultValue:false
-
-    },
-    facebook_link: {
+    referral: {
         type: DataTypes.STRING,
         
-        defaultValue:''
-
     },
-    twitter_link: {
+    createdAt: {
         type: DataTypes.STRING,
-        
-        defaultValue:''
-
+    
     },
-    instagram_link: {
+    updatedAt: {
         type: DataTypes.STRING,
-       
-        defaultValue:''
-
-    },
-    website: {
-        type: DataTypes.STRING,
-       
-        defaultValue:''
-
-    },
-    state: {
-        type: DataTypes.STRING,
-       
-        defaultValue:''
-
-    },
-    country: {
-        type: DataTypes.STRING,
-       
-        defaultValue:''
-
     }
 
 }, {

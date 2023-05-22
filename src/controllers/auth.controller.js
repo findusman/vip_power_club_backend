@@ -1,106 +1,106 @@
-import baseController from "./base.controller"
-import { authMiddleware, validationMiddleware } from '../middleware';
-import { alreadyExistException } from "../exceptions";
-import { CreateUserDto, LogInUserDto, GetSingleUserByEmailDto } from "../dtos";
-import userNotAuthorizaedException from "../exceptions/userNotAuthorizaed.exception";
+// import baseController from "./base.controller"
+// import { authMiddleware, validationMiddleware } from '../middleware';
+// import { alreadyExistException } from "../exceptions";
+// import { CreateUserDto, LogInUserDto, GetSingleUserByEmailDto } from "../dtos";
+// import userNotAuthorizaedException from "../exceptions/userNotAuthorizaed.exception";
 
 
 
 
 
-// import { databaseException } from '../exceptions/database.exceptions.js';
+// // import { databaseException } from '../exceptions/database.exceptions.js';
 
-class authController extends baseController {
+// class authController extends baseController {
 
-    constructor() {
+//     constructor() {
 
-        super('/auth')
-        this.initializeRouter()
+//         super('/auth')
+//         this.initializeRouter()
 
-    }
+//     }
 
-    initializeRouter() {
-
-
-        console.log(LogInUserDto);
-        this.router.post(`${this.parentRouterPath}/registeruser`, validationMiddleware(CreateUserDto), this.registerUser)
-        this.router.post(`${this.parentRouterPath}/login`, validationMiddleware(LogInUserDto), this.login)
-        this.router.post(`${this.parentRouterPath}/me`, validationMiddleware(GetSingleUserByEmailDto), this.getSingleUserByEmail)
-
-    }
-
-    registerUser = async (req, res, next) => {
-
-        try {
+//     initializeRouter() {
 
 
-            const user = await this._authService.isUserExist(req.body.email, req.body.userName)
+//         console.log(LogInUserDto);
+//         this.router.post(`${this.parentRouterPath}/registeruser`, validationMiddleware(CreateUserDto), this.registerUser)
+//         this.router.post(`${this.parentRouterPath}/login`, validationMiddleware(LogInUserDto), this.login)
+//         this.router.post(`${this.parentRouterPath}/me`, validationMiddleware(GetSingleUserByEmailDto), this.getSingleUserByEmail)
 
-            if (user) {
+//     }
 
-                res.status(400).send(this._responseTemplate('Error', undefined, 'User Exists!'))
+//     registerUser = async (req, res, next) => {
 
-            }
-            const userData = await this._authService.registerUser(req.body)
-            // console.log(data);
-            res.send(this._responseTemplate('Success', userData, undefined))
-
-
-        } catch (error) {
-            next(error)
-        }
-
-    }
-
-    login = async (req, res, next) => {
-
-        try {
+//         try {
 
 
-            const user = await this._authService.login(req.body.emailOrUsername, req.body.password)
+//             const user = await this._authService.isUserExist(req.body.email, req.body.userName)
 
-            if (user) {
+//             if (user) {
 
-                res.status(200).send(this._responseTemplate('Success', user, undefined))
+//                 res.status(400).send(this._responseTemplate('Error', undefined, 'User Exists!'))
 
-            } else {
+//             }
+//             const userData = await this._authService.registerUser(req.body)
+//             // console.log(data);
+//             res.send(this._responseTemplate('Success', userData, undefined))
 
-                res.status(404).send(this._responseTemplate('Error', undefined, 'User Not Exist'))
 
-            }
+//         } catch (error) {
+//             next(error)
+//         }
 
-        } catch (error) {
+//     }
 
-            next(error)
-        }
+//     login = async (req, res, next) => {
 
-    }
-    getSingleUserByEmail = async (req, res, next) => {
+//         try {
 
-        try {
 
-            if (req.userData)
-                new userNotAuthorizaedException()
+//             const user = await this._authService.login(req.body.emailOrUsername, req.body.password)
 
-            const user = await this._authService.getSingleUserByEmail(req.body.email)
+//             if (user) {
 
-            if (user) {
+//                 res.status(200).send(this._responseTemplate('Success', user, undefined))
 
-                res.status(200).send(this._responseTemplate('Success', user, undefined))
+//             } else {
 
-            } else {
+//                 res.status(404).send(this._responseTemplate('Error', undefined, 'User Not Exist'))
 
-                res.status(400).send(this._responseTemplate('Error', undefined, 'User Not Exist'))
+//             }
 
-            }
+//         } catch (error) {
 
-        } catch (error) {
+//             next(error)
+//         }
 
-            next(error)
-        }
+//     }
+//     getSingleUserByEmail = async (req, res, next) => {
 
-    }
+//         try {
 
-}
+//             if (req.userData)
+//                 new userNotAuthorizaedException()
 
-export default authController
+//             const user = await this._authService.getSingleUserByEmail(req.body.email)
+
+//             if (user) {
+
+//                 res.status(200).send(this._responseTemplate('Success', user, undefined))
+
+//             } else {
+
+//                 res.status(400).send(this._responseTemplate('Error', undefined, 'User Not Exist'))
+
+//             }
+
+//         } catch (error) {
+
+//             next(error)
+//         }
+
+//     }
+
+// }
+
+// export default authController

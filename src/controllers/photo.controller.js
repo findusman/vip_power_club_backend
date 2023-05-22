@@ -1,77 +1,77 @@
-import baseController from "./base.controller"
-import { validationMiddleware, authMiddleware, conditionalAuthMiddleware } from '../middleware';
-import { Env } from "../config";
-import { AddPhotoDto, ListPhotosDto } from "../dtos";
-import userNotAuthorizaedException from "../exceptions/userNotAuthorizaed.exception";
-const uploadPhoto =require("../utils/aws/s3");
+// import baseController from "./base.controller"
+// import { validationMiddleware, authMiddleware, conditionalAuthMiddleware } from '../middleware';
+// import { Env } from "../config";
+// import { AddPhotoDto, ListPhotosDto } from "../dtos";
+// import userNotAuthorizaedException from "../exceptions/userNotAuthorizaed.exception";
+// const uploadPhoto =require("../utils/aws/s3");
 
 
 
 
 
 
-class photoController extends baseController {
+// class photoController extends baseController {
 
-    constructor() {
+//     constructor() {
 
-        super('/photo')
-        this.initializeRouter()
-    }
+//         super('/photo')
+//         this.initializeRouter()
+//     }
 
-    initializeRouter() {
+//     initializeRouter() {
 
-        this.router.post(`${this.parentRouterPath}/add`, authMiddleware(), this.addPhoto)
-        this.router.post(`${this.parentRouterPath}/list`, validationMiddleware(ListPhotosDto), conditionalAuthMiddleware, this.listPhoto)
+//         this.router.post(`${this.parentRouterPath}/add`, authMiddleware(), this.addPhoto)
+//         this.router.post(`${this.parentRouterPath}/list`, validationMiddleware(ListPhotosDto), conditionalAuthMiddleware, this.listPhoto)
 
-    }
+//     }
     
     
 
-    addPhoto = async (req, res, next) => {
+//     addPhoto = async (req, res, next) => {
 
-        try {
+//         try {
 
-            if (req.userData)
-                new userNotAuthorizaedException()
-                console.log(req.body)
-            //const photoDataa = await uploadPhoto.uploadPhoto(req);
-            const photoData = await this._photoService.addPhoto(req)
-            res.send(this._responseTemplate('Success', photoData, undefined))
+//             if (req.userData)
+//                 new userNotAuthorizaedException()
+//                 console.log(req.body)
+//             //const photoDataa = await uploadPhoto.uploadPhoto(req);
+//             const photoData = await this._photoService.addPhoto(req)
+//             res.send(this._responseTemplate('Success', photoData, undefined))
 
-        } catch (error) {
+//         } catch (error) {
 
-            // let obj = new databaseException()
-            // next(new NotFoundException('There is a problem'))
-            console.log("photo", error)
-            next(error)
-        }
+//             // let obj = new databaseException()
+//             // next(new NotFoundException('There is a problem'))
+//             console.log("photo", error)
+//             next(error)
+//         }
 
-    }
+//     }
 
-    listPhoto = async (req, res, next) => {
+//     listPhoto = async (req, res, next) => {
 
-        try {
+//         try {
 
-            if (req.userData)
-                new userNotAuthorizaedException()
+//             if (req.userData)
+//                 new userNotAuthorizaedException()
 
-                console.log(req.body)
+//                 console.log(req.body)
                 
 
 
-            const photosData = await this._photoService.listPhoto(req)
-            res.send(this._responseTemplate('Success', photosData, undefined))
+//             const photosData = await this._photoService.listPhoto(req)
+//             res.send(this._responseTemplate('Success', photosData, undefined))
 
 
-        } catch (error) {
+//         } catch (error) {
 
-            // let obj = new databaseException()
-            // next(new NotFoundException('There is a problem'))
-            next(error)
-        }
+//             // let obj = new databaseException()
+//             // next(new NotFoundException('There is a problem'))
+//             next(error)
+//         }
 
-    }
+//     }
 
-}
+// }
 
-export default photoController
+// export default photoController
