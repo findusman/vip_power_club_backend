@@ -1,4 +1,4 @@
-require("dotenv").config("../.env");
+
 
 import App from './app.js';
 import http from 'http'
