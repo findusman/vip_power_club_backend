@@ -1,10 +1,6 @@
 import express from "express";
-import cookieParser from "cookie-parser";
 import cors from "cors";
-
-import { controllers } from "./controllers";
 import bodyParser from "body-parser";
-import { errorMiddleware } from "./middleware";
 import fileUpload from 'express-fileupload';
 
 class App {
